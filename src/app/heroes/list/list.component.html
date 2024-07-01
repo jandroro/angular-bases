@@ -1,0 +1,27 @@
+<h3 class="mt-5">Listado de Héroes</h3>
+
+<div *ngIf="deletedHero; else notingWasDeleted">
+  <h3>Héroe borrado: <small class="text-danger"> {{ deletedHero }} </small></h3>
+</div>
+
+<!-- ng-template is not built within the DOM. It is perfect to evaluations -->
+<ng-template #notingWasDeleted>
+  <h3>No ha borrado nada.</h3>
+</ng-template>
+
+<button
+  class="btn btn-outline-danger"
+  (click)="removeLastHero()"
+  *ngIf="heroNames.length > 0"
+>
+  Borrar último héroe
+</button>
+
+<ul class="mt-2 list-group">
+  <li
+    *ngFor="let name of heroNames"
+    class="list-group-item"
+  >
+    {{ name }}
+  </li>
+</ul>
